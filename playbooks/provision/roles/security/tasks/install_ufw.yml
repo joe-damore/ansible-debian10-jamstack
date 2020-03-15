@@ -1,0 +1,51 @@
+---
+- name: Install 'ufw'
+  apt:
+    name: ufw
+    state: present
+
+- name: Allow all outgoing connections
+  ufw:
+    direction: outgoing
+    default: allow
+
+- name: Deny all incoming connections
+  ufw:
+    direction: incoming
+    default: deny
+
+- name: Limit incoming SSH connections over port 22
+  ufw:
+    direction: in
+    port: '22'
+    protocol: tcp
+    rule: limit
+
+- name: Allow outgoing SSH connections over port 22
+  ufw:
+    direction: out
+    port: '22'
+    protocol: tcp
+    rule: allow
+
+- name: Allow incoming HTTP connections over port 80
+  ufw:
+    direction: in
+    port: '80'
+    protocol: tcp
+    rule: allow
+
+- name: Allow incoming HTTPS connections over port 443
+  ufw:
+    direction: in
+    port: '443'
+    protocol: tcp
+    rule: allow
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+
+- name: Reload UFW
+  ufw:
+    state: reloaded

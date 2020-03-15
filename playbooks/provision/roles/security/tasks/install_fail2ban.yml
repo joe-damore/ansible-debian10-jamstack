@@ -1,0 +1,20 @@
+---
+- name: Install 'fail2ban'
+  apt:
+    name: fail2ban
+    state: present
+
+- name: Copy 'fail2ban.local' to '/etc/fail2ban' directory
+  copy:
+    src: fail2ban/fail2ban.local
+    dest: /etc/fail2ban
+
+- name: Copy 'jail.local' to '/etc/fail2ban' directory
+  copy:
+    src: fail2ban/jail.local
+    dest: /etc/fail2ban
+
+- name: Restart 'fail2ban'
+  service:
+    name: fail2ban
+    state: restarted
