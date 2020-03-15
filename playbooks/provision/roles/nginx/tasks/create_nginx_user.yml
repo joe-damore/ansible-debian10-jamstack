@@ -1,0 +1,8 @@
+---
+- name: Create 'nginx' user
+  user:
+    name: nginx
+    comment: Nginx user
+    state: present
+    create_home: no
+  register: nginx_user

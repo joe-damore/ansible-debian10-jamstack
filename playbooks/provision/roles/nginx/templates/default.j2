@@ -1,0 +1,31 @@
+server {
+    listen 80 default_server;
+    listen [::]:80;
+
+    server_name {{ inventory_hostname }} www.{{ inventory_hostname }};
+
+    location ^~ /.well-known/acme-challenge {
+        allow all;
+        root /var/www/html-acme-challenge;
+    }
+
+    location / {
+        rewrite ^ https://$host$request_uri? permanent;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name staging.{{ inventory_hostname }};
+
+    location ^~ /.well-known/acme-challenge {
+        allow all;
+        root /var/www/html-acme-challenge;
+    }
+
+    location / {
+        rewrite ^ https://$host$request_uri? permanent;
+    }
+}

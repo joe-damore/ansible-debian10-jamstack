@@ -1,0 +1,56 @@
+---
+- name: Create '/home/docker/nginx/volumes' directory
+  file:
+    path: /home/docker/nginx/volumes
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Create '/home/docker/nginx/volumes/conf.d' directory
+  file:
+    path: /home/docker/nginx/volumes/conf.d
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Create '/home/docker/nginx/volumes/html-www' directory
+  file:
+    path: /home/docker/nginx/volumes/html-www
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Create '/home/docker/nginx/volumes/html-staging' directory
+  file:
+    path: /home/docker/nginx/volumes/html-staging
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Create '/home/docker/nginx/volumes/logs' directory
+  file:
+    path: /home/docker/nginx/volumes/logs
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Create '/home/docker/nginx/volumes/dhparam' directory
+  file:
+    path: /home/docker/nginx/volumes/dhparam
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Create '/home/docker/nginx/other' directory
+  file:
+    path: /home/docker/nginx/other
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Create '/home/docker/nginx/other/conf.d' directory
+  file:
+    path: /home/docker/nginx/other/conf.d
+    owner: docker
+    group: docker
+    state: directory

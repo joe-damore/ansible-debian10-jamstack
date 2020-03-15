@@ -1,0 +1,6 @@
+---
+- name: Generate OpenSSL Diffie-Hellman Parameters
+  openssl_dhparam:
+    path: /home/docker/nginx/volumes/dhparam/dhparam-2048.pem
+    size: 2048
+    state: present
