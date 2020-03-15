@@ -1,0 +1,5 @@
+---
+- include: upgrade_packages.yml
+- include: create_sysadmin_user.yml
+- include: create_docker_user.yml
+- include: harden_ssh.yml
