@@ -1,0 +1,33 @@
+---
+- name: Install Python 'ssl-match-hostname' and 'shutil-get-terminal-size' backports
+  apt:
+    name:
+      - python-backports.ssl-match-hostname
+      - python-backports-shutil-get-terminal-size
+    state: present
+
+- name: Install 'python-pip' and 'python3-pip'
+  apt:
+    name:
+      - python-pip
+      - python3-pip
+    state: present
+
+- name: Install 'Docker CE'
+  apt:
+    update_cache: yes
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+
+- name: Install 'Docker SDK for Python' via Pip
+  pip:
+    name: docker
+    state: present
+
+- name: Install 'Docker Compose' version {{ docker_compose_version }} via Pip
+  pip:
+    name: "docker-compose=={{ docker_compose_version }}"
+    state: present

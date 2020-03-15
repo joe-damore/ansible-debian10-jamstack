@@ -1,0 +1,11 @@
+---
+- name: Set 'docker' user's primary group to 'docker'
+  user:
+    name: docker
+    group: docker
+  register: docker_user
+
+- name: Remove 'docker' user from all groups except 'docker'
+  user:
+    name: docker
+    groups: ''
