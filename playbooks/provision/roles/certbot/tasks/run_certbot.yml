@@ -1,0 +1,20 @@
+---
+# TODO Replace joe@joedamore.me with a variable.
+# - name: Generate SSL certificates using Certbot
+#   command:
+#     argv:
+#       - certbot
+#       - certonly
+#       - --webroot
+#       - --webroot-path=/home/docker/nginx/volumes/html-acme-challenge
+#       - --email
+#       - joe@joedamore.me
+#       - --agree-tos
+#       - --no-eff-email
+#       - -d
+#       - "{{ inventory_hostname }}"
+#       - -d
+#       - www.{{ inventory_hostname }}
+#       - -d
+#       - staging.{{ inventory_hostname }}
+#   when: (ssl_fullchain_stat.stat.exists == False) or (ssl_privkey_stat.stat.exists == False)

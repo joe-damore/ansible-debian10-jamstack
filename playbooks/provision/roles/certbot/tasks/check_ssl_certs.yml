@@ -1,0 +1,20 @@
+---
+- name: Stat '/etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem'
+  become: yes
+  become_user: root
+  stat:
+    path: /etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem
+  register: ssl_fullchain_stat
+
+- name: Stat '/etc/letsencrypt/live/{{ inventory_hostname }}/privkey.pem'
+  become: yes
+  become_user: root
+  stat:
+    path: /etc/letsencrypt/live/{{ inventory_hostname }}/privkey.pem
+  register: ssl_privkey_stat
+
+- debug:
+    msg: Stat for /etc/letsencrypt/live/{{ inventory_hostname }}/fullchain.pem is '{{ ssl_fullchain_stat.stat.exists }}'
+
+- debug:
+    msg: Stat for /etc/letsencrypt/live/{{ inventory_hostname }}/privkey.pem is '{{ ssl_privkey_stat.stat.exists }}'
