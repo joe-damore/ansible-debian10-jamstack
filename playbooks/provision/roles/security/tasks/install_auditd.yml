@@ -1,0 +1,10 @@
+---
+- name: Install 'auditd'
+  apt:
+    name: auditd
+    state: present
+
+- name: Restart 'auditd'
+  service:
+    name: auditd
+    state: restarted

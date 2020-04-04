@@ -1,0 +1,5 @@
+---
+- include: harden_ssh.yml
+- include: install_ufw.yml
+- include: install_auditd.yml
+- include: install_fail2ban.yml

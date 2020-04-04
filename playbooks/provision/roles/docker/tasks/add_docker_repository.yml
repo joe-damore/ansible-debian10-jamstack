@@ -1,0 +1,14 @@
+---
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ host_release_name }} stable"
+    state: present
+
+- name: Update apt cache
+  apt:
+    update_cache: yes

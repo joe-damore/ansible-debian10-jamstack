@@ -1,0 +1,19 @@
+---
+version: '3'
+services:
+
+  nginx:
+    build:
+      context: ../nginx/app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/home/docker/nginx/volumes/html-www:/var/www/html-www"
+      - "/home/docker/nginx/volumes/html-staging:/var/www/html-staging"
+      - "/home/docker/nginx/volumes/html-acme-challenge:/var/www/html-acme-challenge"
+      - "/home/docker/nginx/volumes/logs:/logs"
+      - "/home/docker/nginx/volumes/conf.d:/etc/nginx/conf.d"
+      - "/home/docker/nginx/volumes/dhparam:/etc/ssl/certs"
+      - "/etc/letsencrypt:/etc/letsencrypt"
+    restart: always

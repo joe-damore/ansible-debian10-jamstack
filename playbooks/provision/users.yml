@@ -1,0 +1,34 @@
+- name: Get server IP address
+  hosts: localhost
+  gather_facts: no
+  vars_prompt:
+    - name: target_host
+      prompt: Please enter target IP or hostname
+      private: no
+  tasks:
+    - add_host:
+        name: "{{ target_host }}"
+        groups: dynamically_created_hosts
+
+- name: Bootstrap target
+  hosts: dynamically_created_hosts
+  become: yes
+  remote_user: sysadmin
+  roles:
+    - bootstrap
+  vars_prompt:
+    - name: sysadmin_password
+      prompt: "To what should the 'sysadmin' user password be set?"
+      encrypt: "sha512_crypt"
+      confirm: yes
+      private: yes
+
+    - name: sysadmin_public_key
+      prompt: "What is the 'sysadmin' public key? (Leave blank for none)"
+      private: no
+
+    - name: docker_password
+      prompt: "To what should the 'docker' user password be set?"
+      encrypt: "sha512_crypt"
+      confirm: yes
+      private: yes

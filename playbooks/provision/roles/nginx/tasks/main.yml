@@ -1,0 +1,6 @@
+---
+- include: create_nginx_user.yml
+- include: add_dockerfile.yml
+- include: create_volume_directory.yml
+- include: generate_dhparam.yml
+- include: copy_configuration_files.yml

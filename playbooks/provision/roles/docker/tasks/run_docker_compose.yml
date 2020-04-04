@@ -1,0 +1,22 @@
+---
+- name: Create '/home/docker/app' directory
+  file:
+    path: /home/docker/app
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Template 'docker-compose.yml' to '/home/docker/app/docker-compose.yml'
+  template:
+    src: docker-compose.j2
+    dest: /home/docker/app/docker-compose.yml
+    owner: docker
+    group: docker
+
+- name: Run Docker Compose
+  become: yes
+  become_user: docker
+  docker_compose:
+    project_src: '/home/docker/app'
+    build: yes
+    state: present

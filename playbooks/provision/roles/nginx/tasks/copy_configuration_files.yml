@@ -1,0 +1,16 @@
+---
+- name: Template 'default.j2' to '/home/docker/nginx/volumes/conf.d' directory
+  template:
+    src: default.j2
+    dest: /home/docker/nginx/volumes/conf.d/default.conf
+    owner: docker
+    group: docker
+    mode: '0644'
+
+- name: Template 'default-ssl.j2' to '/home/docker/nginx/other/conf.d/default-ssl.conf' directory
+  template:
+    src: default-ssl.j2
+    dest: /home/docker/nginx/other/conf.d/default-ssl.conf
+    owner: docker
+    group: docker
+    mode: '0644'

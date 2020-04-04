@@ -1,0 +1,6 @@
+---
+- name: Create 'docker' user
+  user:
+    name: docker
+    comment: Docker user
+    password: "{{ docker_password }}"

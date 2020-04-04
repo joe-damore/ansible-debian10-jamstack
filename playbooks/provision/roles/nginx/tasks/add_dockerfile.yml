@@ -1,0 +1,14 @@
+---
+- name: Create '/home/docker/nginx/app' directory
+  file:
+    path: /home/docker/nginx/app
+    owner: docker
+    group: docker
+    state: directory
+
+- name: Copy app contents to '/home/docker/nginx/app' directory
+  copy:
+    src: .
+    dest: /home/docker/nginx/app
+    owner: docker
+    group: docker

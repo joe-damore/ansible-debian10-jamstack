@@ -1,0 +1,27 @@
+---
+- name: Copy '/home/docker/nginx/other/conf.d/default-ssl.conf' to '/home/docker/volumes/nginx/conf.d/default-ssl.conf'
+  copy:
+    src: /home/docker/nginx/other/conf.d/default-ssl.conf
+    dest: /home/docker/nginx/volumes/conf.d/default-ssl.conf
+    owner: docker
+    group: docker
+    mode: '0644'
+    remote_src: yes
+  when:
+    - ssl_fullchain_stat.stat.exists == True
+    - ssl_privkey_stat.stat.exists == True
+
+- name: Remove '/home/docker/nginx/volumes/conf.d/default-ssl.conf'
+  file:
+    path: /home/docker/nginx/volumes/conf.d/default-ssl.conf
+    state: absent
+  when: (ssl_fullchain_stat.stat.exists == False) or (ssl_privkey_stat.stat.exists == False)
+
+- name: Restart 'nginx' container
+  become: yes
+  become_user: docker
+  docker_compose:
+    project_src: '/home/docker/app'
+    restarted: yes
+    services:
+      - nginx
