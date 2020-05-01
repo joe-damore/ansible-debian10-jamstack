@@ -18,3 +18,13 @@
       - -d
       - staging.{{ inventory_hostname }}
   when: (ssl_fullchain_stat.stat.exists == False) or (ssl_privkey_stat.stat.exists == False)
+
+- name: Enable weekly certbot renewal cron job
+  cron:
+    name: "certbot renewal"
+    weekday: "1"
+    minute: "0"
+    hour: "12"
+    job: certbot renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+    cron_file: certbot_renew
+    user: root
